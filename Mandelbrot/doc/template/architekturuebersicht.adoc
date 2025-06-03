@@ -2,38 +2,30 @@
 In diesem Abschnitt wird die Systemarchitektur beschrieben. 
 
 === Architekturkomponenten nach MVP & verteilten RMI-Design
-Das System besteht aus einem Client, der dem MVP-Architekturmuster (Model-View-Presenter) folgt und einem verteilten Server-System nach dem Master-Worker-Prinzip. Die Kommunikation erfolgt typischerweise über RMI (Remote Method Invocation).
+Das System basiert auf einer eindeutig strukturierten Architektur, die aus zwei Hauptkomponenten besteht: einem Client, der dem Model-View-Presenter (MVP)-Muster folgt, und einem verteilten Server-System nach dem Master-Worker-Prinzip. Die Kommunikation erfolgt über Remote Method Invocation (RMI).
 
-Ziel der Architektur: Trennung von Benutzeroberfläche, Anwendungslogik und Hintergrundverarbeitung + Auslagerung rechenintensiver Aufgaben an mehrere Worker zur besseren Skalierung und Parallelisierung
+Die Architketur verfolgt das Ziel, Benutzeroberfläche (View), die Anwendungslogik (Presenter) und die Datenhaltung bzw. Verarbeitung (Model) strikt voneinander zu trennen. Diese Trennung gewährleistet sowohl eine klare Strukturierung der Zuständigkeiten im Client als auch eine effiziente, parallele Verarbeitung rechenintensiver Aufgaben auf der Serverseite wie der Darstellung der Mandelbrotmenge.
 
 === Architekturdiagramm
 
-.Client (MVP-Modell)
-* View
-** zuständig für grafische Darstellung und Benutzerinteraktion  
-** gibt Eingaben an Presenter weiter
-* Presenter
-** vermittelt zwischen View und Model  
-** schickt Anfragen an den Master via RMI  
-** verarbeitet Antworten und aktualisiert die View
-* Model
-** hält interne Daten bzw. verarbeitet Ergebnisse vom Server  
-** gibt strukturierte Daten an den Presenter zurück
+Die Systemarchitektur der Anwendung nutzt zwei Software-Architekturmuster: Auf der Client-Seite kommt das Model-View-Presenter-(MVP)-Modell zum Einsatz, während die Serverseite das Master-Worker Prinzip realisiert. Das zugehörige Architekturdiagramm verdeutlicht diese Aufteilung.
 
-.Server: Master-Worker-Modell
-* Master
-** empfängt Aufgaben vom Client  
-** teilt komplexe Aufgaben in kleinere Teilaufgaben auf  
-** weist Aufgaben gezielt an verfügbare Worker zu  
-** sammelt erledigte Aufgaben ein und sendet das Ergebnis zurück an den Client
-* Worker (1-4)
-** bearbeitet Teilaufgaben, die vom Master delegiert wurden  
-** melden Ergebnisse an den Master zurück
+Auf der linken Seite befinden sich die Client-Komponenten des MVP-Modells. Die View ist zuständig für die grafische Darstellung sowie die Interaktion mit dem Benutzer. Sie leitet Eingaben direkt an den Presenter weiter. Der Presenter vermittelt zwischen View und Model. Er verarbeitet Benutzereingaben, sendet Anfragen per Remote Method Invocation (RMI) an den Master (Server) und übernimmt zusätzlich die Aufbereitung der Rückmeldungen. Nach der Antwort vom Master aktualisiert der Presenter die View entsprechend. Das Model dient der Datenhaltung auf Client-Seite und übernimmt ggf. einfache Datenverarbeitungsschritte, bevor es strukturierte Informationen an den Presenter zurückgibt. 
 
-[NOTE]
-====
-saubere Trennung von Präsentation, Logik und Verarbeitung + Skalierbarkeit durch parallele Worker
-====
+In der Mitte des Diagramms ist der Master-Server dargestellt. Dieser empfängt Anfragen vom Presenter des Clients und teilt komplexere Aufgaben in kleinere, parallel verarbeitbare Teilaufgaben. Diese Aufgaben werden gezielt an vier Worker verteilt, die auf der rechten Seite des Diagramms abgebildet sind. 
+
+Jeder Worker bearbeitet die ihm zugewiesene Teilaufgabe und sendet das Ergebnis zusammen und sendet sie in strukturierter Form an den Client zurück. 
+
+Die Kommunikationsflüsse im Diagramm sind farblich differenziert:
+
+* Orange Pfeile zeigen die Aufgabenverteilung vom Master an die Worker,
+* Lila Pfeile repräsentieren den Rückweg der Ergebnisse vom Server an den Client,
+* Grüne Pfeile markieren interne GUI-Aktualisierungen durch den Presenter.
+
+Der gesamte Ablauf lässt sich wie folgt zusammenfassen. Eine Benutzeraktion löst im Client einen Ereignisfluss aus, den der Presenter entgegennimmt. Er übermittelt die Aufgabe per RMI an den Master-Server. Der Master verteilt die Aufgabe auf mehrere Worker, die ihre Ergebnisse zurückmelden. Der Master aggregiert die Resultate und sendet die Antwort an den Client. Dort verarbeitet der Presenter das Ergenbnis und aktualisert die grafische Oberfläche über die View.
+
+Durch diese Architektur wird eine klare Trennung von Präsentationslogik, Datenverarbeitung und Benutzerinteraktion erreicht. Gleichzeitig erlaubt das Master-Worker-Modell eine horizontale Skalierung der Rechenleistung über mehrere Worker-Prozesse hinweg, was die Effizienz bei komplexen Berechnungen deutlich erhöht.
+
 
 image::{dir_assets}/architekture.png[Architekture, align=center, title="Architekture"]
 

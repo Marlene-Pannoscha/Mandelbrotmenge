@@ -1,2 +1,6 @@
 == Teamarbeit und Rollenverteilung
-Die Entwicklung des Projekts erfolgte in enger Zusammenarbeit und wurde arbeitsteilig durchgeführt. Die Aufgabenverteilung gestaltete sich wie folgt:
+Die Zusammenarbeit im Team verlief durchweg effektiv. Wir haben den Beleg gemeinsam in regelmäßigen Treffen erarbeitet, bei denen wir unsere Zwischenergebnisse besprochen, Aufgaben verteilt und technische Fragen geklärt haben. Uns war es leider nur selten möglich, den Beleg vor Ort an der HTWD zu bearbeiten. Da zwei Teammitglieder momentan ihr Vollzeit Praktikum absolvieren. 
+
+Die Aufgaben wurden sinnvoll aufgeteilt: Marlene war hauptsächlich für die Gestaltung und Implementierung der grafischen Benutzeroberfläche (Client) zuständig, Valine übernahm die Entwicklung des Masters, und Anastasia konzentrierte sich auf den Worker. Trotz der klaren Verteilung unterstützten wir uns gegenseitig regelmäßig, gaben uns Hilfestellung und sorgten dafür, dass alle auf dem gleichen Stand bleiben. So konnte jedes Teammitglied jederzeit den Gesamtzusammenhang nachvollziehen. Die Architektur und andere Feinarbeiten wurden zusammen erarbeitet.
+
+Der regelmäßige Austausch, das gegenseitige Verständnis und die strukturierte Aufgabenteilung trugen maßgeblich zu einem reibungslosen Ablauf und guten Fortschritten bei.
