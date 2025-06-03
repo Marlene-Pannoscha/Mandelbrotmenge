@@ -1,0 +1,6 @@
+== Einleitung
+Die Mandelbrot-Menge ist ein klassisches Beispiel für ein mathematisches Fraktal, das durch einfache iterative Berechnungen erzeugt wird, jedoch eine enorme Rechenleistung erfordern kann, insbesondere bei hoher Auflösung und Detailtiefe. Mit zunehmender Komplexität stoßen Einzelrechner schnell an ihre Leistungsgrenzen. Um dieses Problem effizient zu lösen, bietet sich der Einsatz verteilter Systeme an.
+
+Ein verteiltes System nutzt mehrere miteinander verbundene Rechner, um Aufgaben parallel auszuführen und somit Rechenzeiten deutlich zu verkürzen. In dieser Arbeit (oder diesem Projekt) wird ein verteiltes System zur Berechnung und Darstellung der Mandelbrot-Menge entworfen und implementiert. Ziel ist es, die Berechnungen auf mehrere Knoten zu verteilen, die parallel einzelne Bildausschnitte generieren. Dadurch soll sowohl die Skalierbarkeit als auch die Effizienz der Mandelbrot-Berechnung demonstriert werden.
+
+Neben der technischen Umsetzung wird auch die Kommunikation zwischen den Komponenten, das Lastverteilungskonzept sowie die Robustheit des Systems betrachtet. Die Ergebnisse zeigen, dass durch Parallelisierung eine signifikante Beschleunigung der Fraktalberechnung möglich ist.

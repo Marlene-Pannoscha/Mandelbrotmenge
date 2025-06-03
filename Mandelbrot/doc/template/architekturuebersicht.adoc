@@ -1,0 +1,40 @@
+== Architekturübersicht
+In diesem Abschnitt wird die Systemarchitektur beschrieben. 
+
+=== Architekturkomponenten nach MVP & verteilten RMI-Design
+Das System besteht aus einem Client, der dem MVP-Architekturmuster (Model-View-Presenter) folgt und einem verteilten Server-System nach dem Master-Worker-Prinzip. Die Kommunikation erfolgt typischerweise über RMI (Remote Method Invocation).
+
+Ziel der Architektur: Trennung von Benutzeroberfläche, Anwendungslogik und Hintergrundverarbeitung + Auslagerung rechenintensiver Aufgaben an mehrere Worker zur besseren Skalierung und Parallelisierung
+
+=== Architekturdiagramm
+
+.Client (MVP-Modell)
+* View
+** zuständig für grafische Darstellung und Benutzerinteraktion  
+** gibt Eingaben an Presenter weiter
+* Presenter
+** vermittelt zwischen View und Model  
+** schickt Anfragen an den Master via RMI  
+** verarbeitet Antworten und aktualisiert die View
+* Model
+** hält interne Daten bzw. verarbeitet Ergebnisse vom Server  
+** gibt strukturierte Daten an den Presenter zurück
+
+.Server: Master-Worker-Modell
+* Master
+** empfängt Aufgaben vom Client  
+** teilt komplexe Aufgaben in kleinere Teilaufgaben auf  
+** weist Aufgaben gezielt an verfügbare Worker zu  
+** sammelt erledigte Aufgaben ein und sendet das Ergebnis zurück an den Client
+* Worker (1-4)
+** bearbeitet Teilaufgaben, die vom Master delegiert wurden  
+** melden Ergebnisse an den Master zurück
+
+[NOTE]
+====
+saubere Trennung von Präsentation, Logik und Verarbeitung + Skalierbarkeit durch parallele Worker
+====
+
+image::{dir_assets}/architekture.png[Architekture, align=center, title="Architekture"]
+
+image::{dir_assets}/architekture2.png[Architekture 2, align=center, title="Architekture 2"]

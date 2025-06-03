@@ -1,0 +1,9 @@
+:project-name: Valine Richter s85875, Anastasia Suglobow s84401, Marlene Pannoscha s83814 
+
+:toc:
+:toc-title: Inhaltsverzeichnis
+:toclevels: 3
+:sectnums:
+
+:dir: template
+:dir_assets: assets

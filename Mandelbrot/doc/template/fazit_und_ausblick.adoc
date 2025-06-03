@@ -1,0 +1,11 @@
+== Fazit und Ausblick
+
+Das Projekt hat eindrucksvoll gezeigt, dass verteilte Verarbeitung ein wirkungsvoller Ansatz zur Beschleunigung komplexer Rechenprozesse ist. Die entwickelte Architektur erlaubt eine effiziente Aufteilung der Aufgaben und nutzt die vorhandenen Ressourcen optimal aus. Durch intelligente Lastverteilung werden alle verfügbaren Einheiten bestmöglich ausgelastet. Das System reagiert flexibel auf unterschiedliche Ausführungsumgebungen und liefert auch bei wachsender Datenmenge stabile und überzeugende Ergebnisse.
+
+Besonders hervorzuheben ist die Fähigkeit der Anwendung, Aufgaben dynamisch und lastabhängig zu verteilen, sodass die Leistungsfähigkeit der beteiligten Komponenten maximal genutzt wird. Die Skalierbarkeit und Effizienz des Systems belegen die Praxistauglichkeit und das Potenzial für weiterführende Einsätze im Bereich verteilter Systeme.
+
+Für die Zukunft sind folgende Erweiterungen geplant:
+
+- **Erhöhte numerische Genauigkeit:** Der derzeitige Einsatz von `double`-Werten bei der Mandelbrot-Berechnung ist in seiner Präzision begrenzt. Um feinere Strukturen im Fraktal und tiefere Zoomstufen darzustellen, soll künftig auf höhere Genauigkeit umgestellt werden – etwa durch Verwendung von `BigDecimal` oder eigener Gleitkommaarithmetik.
+- **Monitoring und Analyse:** Die Einführung eines Monitoring-Systems zur Laufzeitüberwachung soll die Analyse von Ressourcenverbrauch und Performance erleichtern.
+- **GPU-Unterstützung:** Zur weiteren Beschleunigung der Berechnungen ist geplant, in zukünftigen Versionen die Unterstützung von Grafikprozessoren (GPUs) zu integrieren. Durch deren massive Parallelverarbeitungsfähigkeit kann die Rechenzeit insbesondere bei sehr hohen Zoomstufen erheblich reduziert werden.

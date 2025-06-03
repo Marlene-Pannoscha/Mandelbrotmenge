@@ -1,0 +1,33 @@
+include::config.adoc[]
+:doctype: book
+:chapter-signifier:
+:source-highlighter: rouge
+:rouge-style: github
+:figure-caption: Abbildung
+:table-caption: Tabelle
+:listing-caption: Listing
+:xrefstyle: full
+:icons: font
+= Dokumentation Mandelbrotmenge Programmierung verteilter Systeme: {project-name}
+
+include::{dir}/einleitung.adoc[]
+
+<<<
+
+include::{dir}/architekturuebersicht.adoc[]
+
+<<<
+
+include::{dir}/ermittlung_des_verteilungsgewinns.adoc[]
+
+<<<
+
+include::{dir}/teamarbeit_und_rollenverteilung.adoc[]
+
+<<<
+
+include::{dir}/fazit_und_ausblick.adoc[]
+
+<<<
+
+include::{dir}/anhang.adoc[]
