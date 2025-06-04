@@ -1,41 +1,54 @@
 == Ermittlung des Verteilungsgewinns
 === Messmethodik
-Zur Bewertung der Leistungssteigerung durch Parallelisierung wurde die Laufzeit zur Berechnung eines fixen Bildausschnitts der Mandelbrot-Menge unter verschiedenen Verteilungsszenarien gemessen. Die zu berechnende Fläche wurde dabei in **1200 Chunks** unterteilt, die einzelnen Worker-Knoten zur Berechnung zugewiesen wurden.
-
-Die Testumgebung bestand aus folgenden Hardware-Komponenten:
-
-* **worker_1**: Intel Pentium Silver (geringste Leistung)
-* **worker_2**: ARM Cortex-A76 (mittlere Leistung)
-* **worker_3**: Intel Core i7, 8. Generation (höchste Leistung)
-
-Gemessen wurde jeweils die **Gesamtlaufzeit** vom Start der Berechnung bis zur vollständigen Fertigstellung aller Chunks.
+Zur Bewertung der Leistungssteigerung durch Parallelisierung wurde die Rechenzeit für einen festen Bildausschnitt der Mandelbrot-Menge unter verschiedenen Verteilungsszenarien analysiert. Die zu berechnende Fläche wurde in 1200 Chunks unterteilt, die unterschiedlichen Worker-Knoten zugewiesen wurden.Ziel war es, den Einfluss der Lastverteilung auf die Gesamtlaufzeit zu untersuchen und den Effekt zunehmender Parallelisierung zu dokumentieren.
 
 === Zeitmessung & Auswertung
 
 ==== Tabellen/Diagramme zur Laufzeit
-image::{dir_assets}/plot_1.png[Architekture, align=center, title="Diagramm 1"]
+image::{dir_assets}/output.png[Architekture, align=center, title="Diagramm 1"]
 
 ==== Darstellung von Skalierung und Effizienz
 
-Im Folgenden wird die Auswertung der Laufzeit und der Verteilung der Rechenlast auf verschiedene Worker dargestellt. Die Aufgabe bestand aus der Bearbeitung von insgesamt 1200 Chunks.
+Im Folgenden wird die Auswertung der Laufzeit und der Verteilung der Rechenlast auf verschiedene Worker dargestellt. Die Berechnungsaufgabe bestand in jedem Fall aus 1200 Chunks.
 
-1. **Einzelner Worker (Intel Pentium Silver)**  
-   Bei Ausführung mit nur einem Worker (`worker_1 = Intel Pentium Silver`) betrug die Bearbeitungszeit **67481 ms**. Alle 1200 Chunks wurden von diesem Worker verarbeitet.  
-   → Diese Konfiguration zeigt die langsamste Laufzeit und dient als Referenzwert.
+1. Einzelner Worker
+	•	Verteilung:
+	•	worker_1: 1200 Chunks (100 %)
+	•	Gesamtlaufzeit: 30.920 ms
+Diese Konfiguration dient als Referenzwert. Die gesamte Berechnung wurde von einem einzigen Worker ausgeführt und stellte die längste Rechenzeit dar.
+2. Zwei Worker
+	•	Verteilung:
+	•	worker_1: 604 Chunks (50,33 %)
+	•	worker_4: 596 Chunks (49,67 %)
+	•	Gesamtlaufzeit: 15.613 ms
+ Durch den Einsatz eines zweiten Workers konnte die Rechenzeit nahezu halbiert werden.
+3. Drei Worker
+	•	Verteilung:
+	•	worker_1: 390 Chunks (32,50 %)
+	•	worker_2: 409 Chunks (34,08 %)
+	•	worker_4: 401 Chunks (33,42 %)
+	•	Gesamtlaufzeit: 10.572 ms
+Mit drei Workern wurde eine weitere Reduktion der Laufzeit erreicht. Die Lastverteilung war nahezu gleichmäßig.
 
-2. **Zwei Worker (Intel Pentium Silver & ARM Cortex-A76)**  
-   Bei der parallelen Ausführung mit zwei Workern (`worker_1` und `worker_2`) verringerte sich die Bearbeitungszeit auf **29229 ms**. Die Last wurde aufgeteilt:  
-   - `worker_1`: 547 Chunks (≈45,58%)  
-   - `worker_2`: 653 Chunks (≈54,42%)  
-   → Die Verarbeitungszeit sank signifikant um ca. **56,7%**, was die Effektivität der Parallelisierung unterstreicht.
+4. Vier Worker
+	•	Verteilung:
+	•	worker_1: 297 Chunks (24,75 %)
+	•	worker_2: 296 Chunks (24,67 %)
+	•	worker_3: 296 Chunks (24,67 %)
+	•	worker_4: 311 Chunks (25,92 %)
+	•	Gesamtlaufzeit: 8.212 ms
+Die beste Performance wurde mit vier Workern erzielt. Die Arbeitslast war nahezu gleichmäßig verteilt.
 
-3. **Drei Worker (Intel Pentium Silver, ARM Cortex-A76 & Intel i7 Gen 8)**  
-   Mit drei Workern sank die Zeit weiter auf **12771 ms**. Die Verteilung war:  
-   - `worker_1`: 229 Chunks (≈19,08%)  
-   - `worker_2`: 274 Chunks (≈22,83%)  
-   - `worker_3`: 697 Chunks (≈58,08%)  
-   → Die leistungsstärkste CPU (`worker_3`) übernahm den Großteil der Arbeit. Die Laufzeit wurde gegenüber der Einzel-Worker-Ausführung um ca. **81% reduziert**.
 
 === Interpretation der Ergebnisse
 
-Die Ergebnisse zeigen, dass die Verteilung der Rechenlast auf mehrere Worker zu einer deutlichen Verbesserung der Gesamtlaufzeit führt. Besonders deutlich wird der Effekt beim Einsatz eines leistungsstarken Prozessors (Intel i7 Gen 8), der den größten Anteil der Arbeit übernimmt. Die Skalierung funktioniert effizient, solange eine intelligente Lastverteilung basierend auf der Leistungsfähigkeit der einzelnen Worker erfolgt.
+	•	Von 30.920 ms (1 Worker)
+	•	auf 15.613 ms (2 Worker)
+	•	auf 10.572 ms (3 Worker)
+	•	bis auf 8.212 ms (4 Worker)
+
+Die Messergebnisse verdeutlichen, dass sich die Verarbeitung der Mandelbrot-Menge durch verteiltes Rechnen signifikant beschleunigen lässt. Bereits mit zwei Workern lässt sich die Rechenzeit nahezu halbieren. Eine gleichmäßige Lastverteilung führt zu hoher Effizienz, insbesondere wenn die beteiligten Worker eine ähnliche Leistung aufweisen.
+
+Interessant ist, dass die geringste Verarbeitungszeit nicht durch fokussierte Lastverteilung auf den leistungsstärksten Worker, sondern durch eine nahezu symmetrische Aufgabenzuteilung erreicht wurde. Dies weist darauf hin, dass bei überschaubarer Problemgröße und ähnlicher Netzwerklatenz eine gleichmäßige Verteilung eine effektive Strategie darstellt.
+
+Die Parallelisierung zeigte in allen Fällen klare Skalierungsvorteile. Zwischen Einzelbetrieb und Vierfach-Parallelisierung wurde eine Reduktion der Laufzeit um rund 73,4 % erreicht. Damit zeigt das System eine gute horizontale Skalierbarkeit im gegebenen Setup.
