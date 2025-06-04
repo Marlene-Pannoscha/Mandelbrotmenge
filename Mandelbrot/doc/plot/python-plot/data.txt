@@ -1,24 +1,35 @@
-worker_1 = Intel Pentium Silver
-worker_2 = ARM Cortex-A76
-worker_3 = Intel i7 Gen 8
+============ Summary ============
+* Time		: 8212 ms
+* Total Chunks	: 1200
+* Chunks per Worker
+  - worker_1	: 297	(24,75%)
+  - worker_2	: 296	(24,67%)
+  - worker_3	: 296	(24,67%)
+  - worker_4	: 311	(25,92%)
+
+xmax: -0.3483730867207764
 
 ============ Summary ============
-* Time          : 67481 ms
-* Total Chunks  : 1200
+* Time		: 10572 ms
+* Total Chunks	: 1200
 * Chunks per Worker
-  - worker_1    : 1200  (100,00%)
+  - worker_1	: 390	(32,50%)
+  - worker_2	: 409	(34,08%)
+  - worker_4	: 401	(33,42%)
+
+xmax: -0.3483730867207764
 
 ============ Summary ============
-* Time          : 29229 ms
-* Total Chunks  : 1200
+* Time		: 15613 ms
+* Total Chunks	: 1200
 * Chunks per Worker
-  - worker_1    : 547   (45,58%)
-  - worker_2    : 653   (54,42%)
+  - worker_1	: 604	(50,33%)
+  - worker_4	: 596	(49,67%)
+
+xmax: -0.3483730867207764
 
 ============ Summary ============
-* Time          : 12771 ms
-* Total Chunks  : 1200
+* Time		: 30920 ms
+* Total Chunks	: 1200
 * Chunks per Worker
-  - worker_1    : 229   (19,08%)
-  - worker_2    : 274   (22,83%)
-  - worker_3    : 697   (58,08%)
+  - worker_1	: 1200	(100,00%)

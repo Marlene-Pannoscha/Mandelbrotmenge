@@ -1,37 +1,40 @@
 import matplotlib.pyplot as plt
 
-# Data from each scenario
-scenarios = ["1 Worker", "2 Workers", "3 Workers"]
-times_ms = [67481, 29229, 12771]
+# Neue Szenarien mit 1 bis 4 Workern
+scenarios = ["1 Worker", "2 Workers", "3 Workers", "4 Workers"]
+times_ms = [30920, 15613, 10572, 8212]
 
-# Chunk distribution per worker
+# Neue Chunk-Verteilungen entsprechend der Zusammenfassungen
 chunk_distribution = [
-    {"Intel Pentium Silver": 1200},
-    {"Intel Pentium Silver": 547, "ARM Cortex-A76": 653},
-    {"Intel Pentium Silver": 229, "ARM Cortex-A76": 274, "Intel i7 Gen 8": 697}
+    {"worker_1": 1200},
+    {"worker_1": 604, "worker_4": 596},
+    {"worker_1": 390, "worker_2": 409, "worker_4": 401},
+    {"worker_1": 297, "worker_2": 296, "worker_3": 296, "worker_4": 311}
 ]
 
-# Create a bar chart for processing time
+# Farben für konsistente Darstellung
+worker_labels = ["worker_1", "worker_2", "worker_3", "worker_4"]
+colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+
+# Diagramm erstellen
 plt.figure(figsize=(12, 6))
 
+# Subplot 1: Verarbeitungszeit
 plt.subplot(1, 2, 1)
-plt.bar(scenarios, times_ms, color=["skyblue", "lightgreen", "salmon"])
+plt.bar(scenarios, times_ms, color="skyblue")
 plt.title("Processing Time per Scenario")
 plt.ylabel("Time (ms)")
 plt.xlabel("Worker Configuration")
 
-# Create stacked bar chart for chunk distribution
+# Subplot 2: Chunk-Verteilung (gestapelt)
 plt.subplot(1, 2, 2)
 
-labels = scenarios
 width = 0.6
-worker_labels = ["Intel Pentium Silver", "ARM Cortex-A76", "Intel i7 Gen 8"]
-colors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
+bottom = [0] * len(scenarios)
 
-bottom = [0] * len(labels)
-for worker in worker_labels:
+for i, worker in enumerate(worker_labels):
     data = [config.get(worker, 0) for config in chunk_distribution]
-    plt.bar(labels, data, width, bottom=bottom, label=worker, color=colors[worker_labels.index(worker)])
+    plt.bar(scenarios, data, width, bottom=bottom, label=worker, color=colors[i])
     bottom = [sum(x) for x in zip(bottom, data)]
 
 plt.title("Chunk Distribution per Worker")
