@@ -1,54 +1,67 @@
+
 == Ermittlung des Verteilungsgewinns
+
 === Messmethodik
-Zur Bewertung der Leistungssteigerung durch Parallelisierung wurde die Rechenzeit für einen festen Bildausschnitt der Mandelbrot-Menge unter verschiedenen Verteilungsszenarien analysiert. Die zu berechnende Fläche wurde in 1200 Chunks unterteilt, die unterschiedlichen Worker-Knoten zugewiesen wurden.Ziel war es, den Einfluss der Lastverteilung auf die Gesamtlaufzeit zu untersuchen und den Effekt zunehmender Parallelisierung zu dokumentieren.
+
+Zur Bewertung der Leistungssteigerung durch Parallelisierung wurde die Rechenzeit für einen festen Bildausschnitt der Mandelbrot-Menge unter verschiedenen Verteilungsszenarien analysiert. Die zu berechnende Fläche wurde in *1200 Chunks* unterteilt, die unterschiedlichen Worker-Knoten zugewiesen wurden. Ziel war es, den Einfluss der Lastverteilung auf die Gesamtlaufzeit zu untersuchen und den Effekt zunehmender Parallelisierung zu dokumentieren.
 
 === Zeitmessung & Auswertung
 
-==== Tabellen/Diagramme zur Laufzeit
-image::{dir_assets}/output.png[Architekture, align=center, title="Diagramm 1"]
+==== Diagramm zur Laufzeit und Verteilung
+
+image::{dir_assets}/output.png[Verteilung der Chunks, align=center, title="Verarbeitungszeit und Chunkverteilung"]
+
+- **Beschreibung**: 
+** Kombinierte Darstellung der Bearbeitungsdauer in Millisekunden und der pro Worker verarbeiteten Chunks je Szenario (1–4 Worker). 
+** Gestapeltes Balkendiagramm, das die Aufteilung der Chunks auf die einzelnen Worker für jedes Szenario veranschaulicht.
+
+==== Hinweis zur Reproduzierbarkeit
+
+Alle Diagramme wurden mit `matplotlib` in Python erstellt. Die zugrunde liegenden Messwerte wurden aus dem Projekt zur verteilten Berechnung der Mandelbrot-Menge entnommen.
 
 ==== Darstellung von Skalierung und Effizienz
 
-Im Folgenden wird die Auswertung der Laufzeit und der Verteilung der Rechenlast auf verschiedene Worker dargestellt. Die Berechnungsaufgabe bestand in jedem Fall aus 1200 Chunks.
+Im Folgenden wird die Auswertung der Laufzeit und der Verteilung der Rechenlast auf verschiedene Worker dargestellt. Die Berechnungsaufgabe bestand in jedem Fall aus *1200 Chunks*.
 
-1. Einzelner Worker
-	•	Verteilung:
-	•	worker_1: 1200 Chunks (100 %)
-	•	Gesamtlaufzeit: 30.920 ms
-Diese Konfiguration dient als Referenzwert. Die gesamte Berechnung wurde von einem einzigen Worker ausgeführt und stellte die längste Rechenzeit dar.
-2. Zwei Worker
-	•	Verteilung:
-	•	worker_1: 604 Chunks (50,33 %)
-	•	worker_4: 596 Chunks (49,67 %)
-	•	Gesamtlaufzeit: 15.613 ms
- Durch den Einsatz eines zweiten Workers konnte die Rechenzeit nahezu halbiert werden.
-3. Drei Worker
-	•	Verteilung:
-	•	worker_1: 390 Chunks (32,50 %)
-	•	worker_2: 409 Chunks (34,08 %)
-	•	worker_4: 401 Chunks (33,42 %)
-	•	Gesamtlaufzeit: 10.572 ms
-Mit drei Workern wurde eine weitere Reduktion der Laufzeit erreicht. Die Lastverteilung war nahezu gleichmäßig.
+1. *Einzelner Worker*  
+   * Verteilung:
+     ** worker_1: 1200 Chunks (100 %)
+   * Gesamtlaufzeit: *30.920 ms*  
+   → Diese Konfiguration dient als Referenzwert. Die gesamte Berechnung wurde von einem einzigen Worker ausgeführt und stellte die längste Rechenzeit dar.
 
-4. Vier Worker
-	•	Verteilung:
-	•	worker_1: 297 Chunks (24,75 %)
-	•	worker_2: 296 Chunks (24,67 %)
-	•	worker_3: 296 Chunks (24,67 %)
-	•	worker_4: 311 Chunks (25,92 %)
-	•	Gesamtlaufzeit: 8.212 ms
-Die beste Performance wurde mit vier Workern erzielt. Die Arbeitslast war nahezu gleichmäßig verteilt.
+2. *Zwei Worker*  
+   * Verteilung:
+     ** worker_1: 604 Chunks (50,33 %)
+     ** worker_4: 596 Chunks (49,67 %)
+   * Gesamtlaufzeit: *15.613 ms*  
+   → Durch den Einsatz eines zweiten Workers konnte die Rechenzeit nahezu halbiert werden.
 
+3. *Drei Worker*  
+   * Verteilung:
+     ** worker_1: 390 Chunks (32,50 %)
+     ** worker_2: 409 Chunks (34,08 %)
+     ** worker_4: 401 Chunks (33,42 %)
+   * Gesamtlaufzeit: *10.572 ms*  
+   → Mit drei Workern wurde eine weitere Reduktion der Laufzeit erreicht. Die Lastverteilung war nahezu gleichmäßig.
+
+4. *Vier Worker*  
+   * Verteilung:
+     ** worker_1: 297 Chunks (24,75 %)
+     ** worker_2: 296 Chunks (24,67 %)
+     ** worker_3: 296 Chunks (24,67 %)
+     ** worker_4: 311 Chunks (25,92 %)
+   * Gesamtlaufzeit: *8.212 ms*  
+   → Die beste Performance wurde mit vier Workern erzielt. Die Arbeitslast war nahezu gleichmäßig verteilt.
 
 === Interpretation der Ergebnisse
 
-	•	Von 30.920 ms (1 Worker)
-	•	auf 15.613 ms (2 Worker)
-	•	auf 10.572 ms (3 Worker)
-	•	bis auf 8.212 ms (4 Worker)
+* Von *30.920 ms* (1 Worker)
+* auf *15.613 ms* (2 Worker)
+* auf *10.572 ms* (3 Worker)
+* bis auf *8.212 ms* (4 Worker)
 
 Die Messergebnisse verdeutlichen, dass sich die Verarbeitung der Mandelbrot-Menge durch verteiltes Rechnen signifikant beschleunigen lässt. Bereits mit zwei Workern lässt sich die Rechenzeit nahezu halbieren. Eine gleichmäßige Lastverteilung führt zu hoher Effizienz, insbesondere wenn die beteiligten Worker eine ähnliche Leistung aufweisen.
 
 Interessant ist, dass die geringste Verarbeitungszeit nicht durch fokussierte Lastverteilung auf den leistungsstärksten Worker, sondern durch eine nahezu symmetrische Aufgabenzuteilung erreicht wurde. Dies weist darauf hin, dass bei überschaubarer Problemgröße und ähnlicher Netzwerklatenz eine gleichmäßige Verteilung eine effektive Strategie darstellt.
 
-Die Parallelisierung zeigte in allen Fällen klare Skalierungsvorteile. Zwischen Einzelbetrieb und Vierfach-Parallelisierung wurde eine Reduktion der Laufzeit um rund 73,4 % erreicht. Damit zeigt das System eine gute horizontale Skalierbarkeit im gegebenen Setup.
+Die Parallelisierung zeigte in allen Fällen klare Skalierungsvorteile. Zwischen Einzelbetrieb und Vierfach-Parallelisierung wurde eine Reduktion der Laufzeit um rund *73,4 %* erreicht. Damit zeigt das System eine gute horizontale Skalierbarkeit im gegebenen Setup.

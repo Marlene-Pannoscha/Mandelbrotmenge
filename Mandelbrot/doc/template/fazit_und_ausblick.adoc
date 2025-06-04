@@ -1,11 +1,15 @@
 == Fazit und Ausblick
 
-Das Projekt hat eindrucksvoll gezeigt, dass verteilte Verarbeitung ein wirkungsvoller Ansatz zur Beschleunigung komplexer Rechenprozesse ist. Die entwickelte Architektur erlaubt eine effiziente Aufteilung der Aufgaben und nutzt die vorhandenen Ressourcen optimal aus. Durch intelligente Lastverteilung werden alle verfügbaren Einheiten bestmöglich ausgelastet. Das System reagiert flexibel auf unterschiedliche Ausführungsumgebungen und liefert auch bei wachsender Datenmenge stabile und überzeugende Ergebnisse.
+Das Projekt zeigt, dass verteilte Verarbeitung ein effektive Lösung zur Bewältigung rechenintensiver Aufgaben wie der Berechnung der Mandelbrot-Menge dartsellen. Die durchgeführten Messungen belegen, dass die Verarbeitungsgeschwindigkeit mit zunehmender Anzahl von Worker-Knoten deutlich gesteigert werden kann – bei gleichzeitiger gleichmäßiger Auslastung der Ressourcen. Die Systemarchitektur ermöglicht eine saubere Trennung von Steuerlogik, Benutzeroberfläche und Berechnungskomponenten und lässt sich flexibel an unterschiedliche Hardwarekonfigurationen anpassen.
 
-Besonders hervorzuheben ist die Fähigkeit der Anwendung, Aufgaben dynamisch und lastabhängig zu verteilen, sodass die Leistungsfähigkeit der beteiligten Komponenten maximal genutzt wird. Die Skalierbarkeit und Effizienz des Systems belegen die Praxistauglichkeit und das Potenzial für weiterführende Einsätze im Bereich verteilter Systeme.
-
+Besonders hervorzuheben ist die effiziente Aufgabenverteilung, die es ermöglicht, die Rechenlast auf Basis verfügbarer Ressourcen gleichmäßig zu verteilen. Die Skalierung ist nachvollziehbar und stabil – bereits durch den Einsatz eines zweiten Workers konnte die Rechenzeit nahezu halbiert werden. Mit vier parallel arbeitenden Workern wurde eine Reduktion um über 70 % gegenüber der Einzelverarbeitung erreicht.
 Für die Zukunft sind folgende Erweiterungen geplant:
 
-- **Erhöhte numerische Genauigkeit:** Der derzeitige Einsatz von `double`-Werten bei der Mandelbrot-Berechnung ist in seiner Präzision begrenzt. Um feinere Strukturen im Fraktal und tiefere Zoomstufen darzustellen, soll künftig auf höhere Genauigkeit umgestellt werden – etwa durch Verwendung von `BigDecimal` oder eigener Gleitkommaarithmetik.
-- **Monitoring und Analyse:** Die Einführung eines Monitoring-Systems zur Laufzeitüberwachung soll die Analyse von Ressourcenverbrauch und Performance erleichtern.
-- **GPU-Unterstützung:** Zur weiteren Beschleunigung der Berechnungen ist geplant, in zukünftigen Versionen die Unterstützung von Grafikprozessoren (GPUs) zu integrieren. Durch deren massive Parallelverarbeitungsfähigkeit kann die Rechenzeit insbesondere bei sehr hohen Zoomstufen erheblich reduziert werden.
+Für weiterführende Arbeiten ergeben sich folgende Perspektiven:
+
+- **Dynamische Lastverteilung**: Bisher wurde die Chunk-Verteilung statisch vorgenommen. Zukünftig könnte ein dynamisches Scheduling auf Basis der tatsächlich gemessenen Ausführungszeiten eine noch bessere Ausnutzung heterogener Systeme ermöglichen.
+
+- **Visualisierung & Benutzerfreundlichkei**t: Eine interaktive Darstellung der berechneten Fraktale sowie eine visuelle Rückmeldung über den Fortschritt könnten die Anwendung deutlich intuitiver gestalten.
+
+Insgesamt liefert das Projekt eine solide Grundlage für weitere Experimente und Optimierungen im Bereich verteilter Verfahren und demonstriert anschaulich das Potenzial moderner vernetzter Rechenarchitekturen.
+

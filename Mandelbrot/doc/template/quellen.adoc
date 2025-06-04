@@ -1,0 +1,5 @@
+== Quellen
+
+* https://de.wikipedia.org/wiki/Mandelbrot-Menge – Allgemeine Einführung und mathematische Grundlagen zur Mandelbrot-Menge.
+* https://www.youtube.com/watch?v=LqbZpur38nw&t=260s – Visualisierung der Komplexität und Zoomtiefe der Mandelbrot-Menge (YouTube, 3Blue1Brown).
+* https://www.youtube.com/watch?v=_78kGnsYXLc – Erläuterung der zugrunde liegenden Mathematik und Struktur (YouTube, Numberphile).

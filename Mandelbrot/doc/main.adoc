@@ -30,4 +30,4 @@ include::{dir}/fazit_und_ausblick.adoc[]
 
 <<<
 
-include::{dir}/anhang.adoc[]
+include::{dir}/quellen.adoc[]

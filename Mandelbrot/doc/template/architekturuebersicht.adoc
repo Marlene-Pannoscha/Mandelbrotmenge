@@ -27,4 +27,4 @@ Der gesamte Ablauf lässt sich wie folgt zusammenfassen. Eine Benutzeraktion lö
 Durch diese Architektur wird eine klare Trennung von Präsentationslogik, Datenverarbeitung und Benutzerinteraktion erreicht. Gleichzeitig erlaubt das Master-Worker-Modell eine horizontale Skalierung der Rechenleistung über mehrere Worker-Prozesse hinweg, was die Effizienz bei komplexen Berechnungen deutlich erhöht.
 
 
-image::{dir_assets}/architekture.png[Architekture, align=center, title="Architekture"]
+image::{dir_assets}/architekture.png[Architektur, align=center, title="Architektur"]
