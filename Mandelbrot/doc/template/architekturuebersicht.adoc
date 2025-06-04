@@ -1,5 +1,5 @@
 == Architekturübersicht
-In diesem Abschnitt wird die Systemarchitektur beschrieben. 
+In diesem Abschnitt wird die Systemarchitektur beschrieben und mittels´geeigneter graphischer Darstekkung erläutert.
 
 === Architekturkomponenten nach MVP & verteilten RMI-Design
 Das System basiert auf einer eindeutig strukturierten Architektur, die aus zwei Hauptkomponenten besteht: einem Client, der dem Model-View-Presenter (MVP)-Muster folgt, und einem verteilten Server-System nach dem Master-Worker-Prinzip. Die Kommunikation erfolgt über Remote Method Invocation (RMI).
@@ -10,11 +10,11 @@ Die Architketur verfolgt das Ziel, Benutzeroberfläche (View), die Anwendungslog
 
 Die Systemarchitektur der Anwendung nutzt zwei Software-Architekturmuster: Auf der Client-Seite kommt das Model-View-Presenter-(MVP)-Modell zum Einsatz, während die Serverseite das Master-Worker Prinzip realisiert. Das zugehörige Architekturdiagramm verdeutlicht diese Aufteilung.
 
-Auf der linken Seite befinden sich die Client-Komponenten des MVP-Modells. Die View ist zuständig für die grafische Darstellung sowie die Interaktion mit dem Benutzer. Sie leitet Eingaben direkt an den Presenter weiter. Der Presenter vermittelt zwischen View und Model. Er verarbeitet Benutzereingaben, sendet Anfragen per Remote Method Invocation (RMI) an den Master (Server) und übernimmt zusätzlich die Aufbereitung der Rückmeldungen. Nach der Antwort vom Master aktualisiert der Presenter die View entsprechend. Das Model dient der Datenhaltung auf Client-Seite und übernimmt ggf. einfache Datenverarbeitungsschritte, bevor es strukturierte Informationen an den Presenter zurückgibt. 
+Auf der linken Seite befinden sich die Client-Komponenten des MVP-Modells. Die View ist zuständig für die grafische Darstellung sowie die Interaktion mit dem Benutzer. Sie leitet Eingaben direkt an den Presenter weiter. Der Presenter vermittelt zwischen View und Model. Er verarbeitet Benutzereingaben, sendet Anfragen per Remote Method Invocation (RMI) an den Master (Server) und übernimmt zusätzlich die Aufbereitung der Rückmeldungen. Nach der Antwort vom Master aktualisiert der Presenter die View entsprechend. Das Model dient der Datenhaltung auf Client-Seite und übernimmt ggf. einfache Datenverarbeitungsschritte, bevor es strukturierte Informationen an den Presenter zurückgibt.
 
-In der Mitte des Diagramms ist der Master-Server dargestellt. Dieser empfängt Anfragen vom Presenter des Clients und teilt komplexere Aufgaben in kleinere, parallel verarbeitbare Teilaufgaben. Diese Aufgaben werden gezielt an vier Worker verteilt, die auf der rechten Seite des Diagramms abgebildet sind. 
+In der Mitte des Diagramms ist der Master-Server dargestellt. Dieser empfängt Anfragen vom Presenter des Clients und teilt komplexere Aufgaben in kleinere, parallel verarbeitbare Teilaufgaben. Diese Aufgaben werden gezielt an vier Worker verteilt, die auf der rechten Seite des Diagramms abgebildet sind.
 
-Jeder Worker bearbeitet die ihm zugewiesene Teilaufgabe und sendet das Ergebnis zusammen und sendet sie in strukturierter Form an den Client zurück. 
+Jeder Worker bearbeitet die ihm zugewiesene Teilaufgabe und sendet das Ergebnis zusammen und sendet sie in strukturierter Form an den Client zurück.
 
 Die Kommunikationsflüsse im Diagramm sind farblich differenziert:
 
@@ -28,5 +28,3 @@ Durch diese Architektur wird eine klare Trennung von Präsentationslogik, Datenv
 
 
 image::{dir_assets}/architekture.png[Architekture, align=center, title="Architekture"]
-
-image::{dir_assets}/architekture2.png[Architekture 2, align=center, title="Architekture 2"]
