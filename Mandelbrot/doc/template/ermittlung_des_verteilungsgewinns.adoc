@@ -15,10 +15,6 @@ image::{dir_assets}/output.png[Verteilung der Chunks, align=center, title="Verar
 ** Kombinierte Darstellung der Bearbeitungsdauer in Millisekunden und der pro Worker verarbeiteten Chunks je Szenario (1–4 Worker). 
 ** Gestapeltes Balkendiagramm, das die Aufteilung der Chunks auf die einzelnen Worker für jedes Szenario veranschaulicht.
 
-==== Hinweis zur Reproduzierbarkeit
-
-Alle Diagramme wurden mit `matplotlib` in Python erstellt. Die zugrunde liegenden Messwerte wurden aus dem Projekt zur verteilten Berechnung der Mandelbrot-Menge entnommen.
-
 ==== Darstellung von Skalierung und Effizienz
 
 Im Folgenden wird die Auswertung der Laufzeit und der Verteilung der Rechenlast auf verschiedene Worker dargestellt. Die Berechnungsaufgabe bestand in jedem Fall aus *1200 Chunks*.
@@ -52,6 +48,10 @@ Im Folgenden wird die Auswertung der Laufzeit und der Verteilung der Rechenlast 
      ** worker_4: 311 Chunks (25,92 %)
    * Gesamtlaufzeit: *8.212 ms*  
    → Die beste Performance wurde mit vier Workern erzielt. Die Arbeitslast war nahezu gleichmäßig verteilt.
+
+==== Hinweis zur Reproduzierbarkeit
+
+Alle Diagramme wurden mit `matplotlib` in Python erstellt. Die zugrunde liegenden Messwerte wurden aus dem Projekt zur verteilten Berechnung der Mandelbrot-Menge entnommen.
 
 === Interpretation der Ergebnisse
 

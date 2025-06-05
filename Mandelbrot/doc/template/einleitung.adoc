@@ -3,6 +3,6 @@ Die Mandelbrot-Menge stellt ein prototypisches Beispiel für ein mathematisches 
 
 Zur effizienten Lösung dieses Problems bietet sich der Einsatz von verteilten Systemen an, dass mehrere miteinander verbundene Rechner nutzt, um Aufgaben parallel auszuführen und somit Rechenzeiten deutlich zu verkürzen. In diesem Projekt wird ein verteiltes System zur Berechnung und Darstellung der Mandelbrot-Menge entworfen und implementiert. Ziel ist es, die Berechnungen auf mehrere Knoten zu verteilen, die parallel einzelne Bildausschnitte generieren. Dadurch soll sowohl die Skalierbarkeit als auch die Effizienz der Mandelbrot-Berechnung demonstriert werden.
 
-Diese Arbeit beschreibt zunächst die konzipierte und implementierte Systemarchitektur, analysiert anschließend die Skalierbarkeit anhand empirisch erhobener Messwerte und reflektiert abschließend die im Rahmen der Teamarbeit gewonnenen Erfahrungen. Die Ergebnisse zeigen, dass durch die Parallelisierung der Berechnung eine signifikante Leistungssteigerung erzielt werden kann, was die Effizienz und Skalierbarkeit des gewählten Ansatzes unterstreicht.
+Diese Arbeit beschreibt zunächst die konzipierte und implementierte Systemarchitektur, analysiert anschließend die Skalierbarkeit anhand empirisch erhobener Messwerte und reflektiert die im Rahmen der Teamarbeit gewonnenen Erfahrungen. Die Ergebnisse zeigen, dass durch die Parallelisierung der Berechnung eine signifikante Leistungssteigerung erzielt werden kann, was die Effizienz und Skalierbarkeit des gewählten Ansatzes unterstreicht.
 
 

@@ -1,8 +1,8 @@
 == Architekturübersicht
-In diesem Abschnitt wird die Systemarchitektur beschrieben und mittels´geeigneter graphischer Darstekkung erläutert.
+In diesem Abschnitt wird die Systemarchitektur beschrieben und mittels geeigneter graphischer Darstekkung erläutert.
 
 === Architekturkomponenten nach MVP & verteilten RMI-Design
-Das System basiert auf einer eindeutig strukturierten Architektur, die aus zwei Hauptkomponenten besteht: einem Client, der dem Model-View-Presenter (MVP)-Muster folgt, und einem verteilten Server-System nach dem Master-Worker-Prinzip. Die Kommunikation erfolgt über Remote Method Invocation (RMI).
+Das System basiert auf einer strukturierten Architektur, die aus zwei Hauptkomponenten besteht: einem Client, der dem Model-View-Presenter (MVP)-Muster folgt, und einem verteilten Server-System nach dem Master-Worker-Prinzip. Die Kommunikation erfolgt über Remote Method Invocation (RMI).
 
 Die Architketur verfolgt das Ziel, Benutzeroberfläche (View), die Anwendungslogik (Presenter) und die Datenhaltung bzw. Verarbeitung (Model) strikt voneinander zu trennen. Diese Trennung gewährleistet sowohl eine klare Strukturierung der Zuständigkeiten im Client als auch eine effiziente, parallele Verarbeitung rechenintensiver Aufgaben auf der Serverseite wie der Darstellung der Mandelbrotmenge.
 
